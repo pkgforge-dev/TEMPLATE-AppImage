@@ -16,8 +16,3 @@ get-debloated-pkgs --add-common --prefer-nano
 #get-aur-package PACKAGENAME
 
 # If the application needs to be manually built that has to be done down here
-
-# Finally we get the version of the application and put it in a version file
-# If the app was installed with pacman it is as simple as the following:
-# pacman -Q PACKAGENAME | awk '{print $2; exit}' > ./dist/version
-
