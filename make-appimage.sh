@@ -17,4 +17,6 @@ quick-sharun /PATH/TO/BINARY_AND_LIBRARIES_HERE
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
 
+# release artifact and make appname file
 mv -v ./*.AppImage* ./dist
+awk -F'=' '/^Name=/ {gsub(/ /,"_",$2); print $2; exit}' ./AppDir/*.desktop > ./dist/appname
