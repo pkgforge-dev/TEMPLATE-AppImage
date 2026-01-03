@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# This script extracts the 'details' directory
+
+# NOTE: THIS IS AN INTERNAL SCRIPT AND IT CAN ONLY RUN INSIDE THE APPIMAGE AS A COMMAND LINE ARGUMENT
+
+echo "Extracting details..."
+
+STEM=$(basename "$URUNTIME")
+PATH_PARENT=$(dirname "$URUNTIME")
+PATH_OK="$PATH_PARENT""/""$STEM"".details"
+PATH_DETAILS="$APPDIR""/_details"
+mkdir -vp "$PATH_OK"
+cp -va "$PATH_DETAILS"/* "$PATH_OK"/
+
+find "$PATH_OK"
+
+echo "
+
+Details have been extracted to:
+
+$PATH_PARENT
+
+	$STEM.details
+
+All Done!"
