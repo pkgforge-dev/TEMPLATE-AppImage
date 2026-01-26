@@ -25,7 +25,7 @@ AppImage made using [sharun](https://github.com/VHSgunzo/sharun) and its wrapper
 
 This AppImage doesn't require FUSE to run at all, thanks to the [uruntime](https://github.com/VHSgunzo/uruntime).
 
-This AppImage is also supplied with a self-updater by default, so any updates to this application won't be missed, you will be promted for permission to check for updates and if agreed you will then be notified when a new update is available.
+This AppImage is also supplied with a self-updater by default, so any updates to this application won't be missed, you will be prompted for permission to check for updates and if agreed you will then be notified when a new update is available.
 
 Self-updater is disabled by default if AppImage managers like [am](https://github.com/ivan-hc/AM), [soar](https://github.com/pkgforge/soar) or [dbin](https://github.com/xplshn/dbin) exist, which manage AppImage updates.
 
