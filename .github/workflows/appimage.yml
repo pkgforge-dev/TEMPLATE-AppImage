@@ -23,7 +23,7 @@ jobs:
             arch: aarch64
     container: ghcr.io/pkgforge-dev/archlinux:latest
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Preparing Container
         uses: pkgforge-dev/anylinux-setup-action@8872fabe63f9a00b35e25b2f46da62a05afc9a7d # v1
       - name: Install Dependencies
