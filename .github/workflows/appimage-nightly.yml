@@ -52,6 +52,6 @@ jobs:
           merge-multiple: true
         continue-on-error: true
       - name: Release Nightly AppImage
-        uses: pkgforge-dev/make-nightly-appimage-release@v1.1
+        uses: pkgforge-dev/make-nightly-appimage-release@17cbe90fc0796286e424619a54a82a3a880efe4c # v1.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
