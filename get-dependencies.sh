@@ -19,7 +19,7 @@ get-debloated-pkgs --add-common --prefer-nano
 
 # if you also have to make nightly releases check for DEVEL_RELEASE = 1
 #
-# if [ "$DEVEL_RELEASE" = 1 ]; then
+# if [ "${DEVEL_RELEASE-}" = 1 ]; then
 # 	nightly build steps
 # else
 # 	regular build steps
