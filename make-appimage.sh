@@ -18,3 +18,6 @@ quick-sharun /PATH/TO/BINARY_AND_LIBRARIES_HERE
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
+
+# test the final app
+quick-sharun --test ./dist/*.AppImage
