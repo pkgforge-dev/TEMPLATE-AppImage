@@ -8,7 +8,7 @@ on:
 # get-dependencies.sh to make a nightly release, this will make a release with 'nightly' tag  #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #  schedule:
-#    - cron: "0 7 1/2 * *" # We default to rebuilding nightly every 2 days, change this to your liking
+#    - cron: "0 5 1/2 * *" # We default to rebuilding nightly every 2 days, change this to your liking
   workflow_dispatch: {}
 
 jobs:
