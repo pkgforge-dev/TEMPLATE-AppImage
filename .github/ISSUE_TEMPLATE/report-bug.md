@@ -1,6 +1,6 @@
 ---
 name: "Bug report - AppImage (please attach debug log)"
-about: "Report crashes or other bugs. Run the AppImage with APPIMAGE_DEBUG=1 and attach the generated log file (the AppImage will create the file automatically and print its path)."
+about: "Report crashes or other bugs. Run the AppImage with APPIMAGE_DEBUG=1 and attach the generated log file."
 ---
 
 Please fill out the sections below.
