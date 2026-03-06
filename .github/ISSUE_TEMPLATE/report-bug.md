@@ -1,11 +1,9 @@
 ---
-name: "Bug report — AppImage (please attach debug log)"
+name: "Bug report - AppImage (please attach debug log)"
 about: "Report crashes or other bugs. Run the AppImage with APPIMAGE_DEBUG=1 and attach the generated log file (the AppImage will create the file automatically and print its path)."
-title: "[BUG] "
-labels: ["bug"]
 ---
 
-Please fill out the sections below and be sure to follow the "Collect the AppImage debug log" steps before submitting.
+Please fill out the sections below.
 
 ## Collect the AppImage debug log (required)
 1. Run the AppImage with debug enabled:
