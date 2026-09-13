@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Preparing Container
-        uses: pkgforge-dev/anylinux-setup-action@7278cbb7c3692fce7241d427614ef7984192f138 # v3
+        uses: pkgforge-dev/anylinux-setup-action@7ff2bdc2fe97f9a4c6a4007f5f42fb4941f49fee # v4
       - name: Install Dependencies
         run: /bin/sh ./get-dependencies.sh
       - name: Make AppImage
@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Build AppImage (emulated)
-        uses: pkgforge-dev/anylinux-setup-action/emulated@7278cbb7c3692fce7241d427614ef7984192f138 # v3
+        uses: pkgforge-dev/anylinux-setup-action/emulated@7ff2bdc2fe97f9a4c6a4007f5f42fb4941f49fee # v4
         with:
           platform: ${{ matrix.platform }}
       - name: Upload artifact
