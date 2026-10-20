@@ -1,0 +1,134 @@
+---------------
+Default Exports
+---------------
+export ARCH
+ Used by sharun to set x86_64 or aarch64 in appimage name
+
+VERSION=$(pacman -Q PACKAGENAME | awk '{print $2; exit}') 
+export VERSION
+  example command to get version of application here
+
+export OUTPATH=./dist
+  Where sharun will store the appimage
+  
+export ADD_HOOKS="self-updater.hook"
+export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
+  Enable self updating, and sets the path used by zsync.
+
+export ICON=PATH_OR_URL_TO_ICON                           
+  Path or URL to an icon file to include. 
+
+export DESKTOP=PATH_OR_URL_TO_DESKTOP_ENTRY               
+  Path or URL to a .desktop file to include.
+  
+------------------------
+These effect the builder
+------------------------
+ export NO_STRIP=1            
+   Disable stripping binaries and libraries if set.
+ export APPDIR=./AppDir              
+   Destination AppDir (default: ./AppDir).
+ export ANYLINUX_LIB        
+   Preloads a library that unsets environment variables known to
+   cause problems to child processes. Set to 0 to disable.
+   Additionally you can set ANYLINUX_DO_NOT_LOAD_LIBS to a
+   list of colon separated libraries to prevent from being
+   dlopened, the entries support simple globbing, example:
+   export ANYLINUX_DO_NOT_LOAD_LIBS='libpipewire-0.3.so*'
+   Useful for applications that will try to dlopen several
+   optional dependencies that you do not want to include.
+ export OUTPUT_APPIMAGE=1
+   Set to 1 to turn the deployed AppDir into an AppImage.
+
+------------------------
+  System Libraries
+------------------------
+ export DEPLOY_PYTHON=1
+   Set to 1 to deploy system Python. Will remove all pycache
+	 files, set DEBLOAT_PYTHON to 0 to prevent this.
+ export LIB_DIR
+   Set source library directory if autodetection fails.
+ export PATH_MAPPING
+   Configures and preloads pathmap.
+	 Set this variable if the application is hardcoded to look
+	 into /usr and similar locations, example:
+	 
+     export PATH_MAPPING='
+	     /usr/lib/myapp_libs:\${SHARUN_DIR}/lib/myapp_libs
+	     /etc/myapp.conf:\${SHARUN_DIR}/etc/myapp.conf
+	   '
+     
+	 \${SHARUN_DIR} here must NOT expand! The braces in the variable are mandatory!
+ export DEPLOY_LOCALE=1
+   Set to 1 to deploy locale data.
+
+------------------------
+  GUI Toolkits
+------------------------
+ export DEPLOY_GTK=1
+   Set to 1 to force deployment of GTK.
+ export DEPLOY_QT=1
+   Set to 1 to force deployment of Qt. Will determine to deploy
+	 QtWebEngine and Qml as well, these can be controlled with
+	 DEPLOY_QT_WEB_ENGINE and DEPLOY_QML. Set to 1 enable, 0 disable
+	 Set QT_DIR if the system Qt directory in LIB_DIR has a different name.
+  export STARTUPWMCLASS=ext.website.appname 
+  export GTK_CLASS_FIX=1
+    Default to Wayland's wmclass. For X11, GTK_CLASS_FIX will force the wmclass to be the Wayland one.
+
+------------------------
+  Hardware support                      
+------------------------
+ export DEPLOY_SDL=1
+   Set to 1 to force deployment of SDL.
+
+------------------------
+  3D Support
+------------------------
+ export DEPLOY_OPENGL=1
+   Set to 1 to force deployment of OpenGL.
+ export DEPLOY_VULKAN=1
+   Set to 1 to force deployment of Vulkan.
+ export ALWAYS_SOFTWARE=1
+   Set to 1 to enable. Sets several env variables to make
+	 applications use software rendering, use this option when
+	 you do not want hardware acceleration.
+   Will fail if the application makes use of mesa during deployment.
+------------------------
+  Audio Support
+------------------------                      
+ export DEPLOY_PIPEWIRE=1
+   Set to 1 to force deployment of Pipewire.
+ export DEPLOY_PULSE=1
+   Set to 1 to force deployment of pulseaudio.
+
+------------------------
+  Image Support
+------------------------                      
+ export DEPLOY_BABL=1
+   Set to 1 to force deployment of babl.
+ export DEPLOY_GDK=1
+   Set to 1 to force deployment of gdk-pixbuf.
+ export DEPLOY_GEGL=1
+   Set to 1 to force deployment of GEGL.
+ export DEPLOY_GLYCIN=1
+   Set to 1 to force deployment of Glycin.
+ export DEPLOY_IMAGEMAGICK=1
+   Set to 1 to force deployment of ImageMagick.
+ export DEPLOY_LIBHEIF=1
+   Set to 1 to force deployment of libheif.
+
+------------------------
+  Media Playback
+------------------------
+ export DEPLOY_GSTREAMER=1
+ export DEPLOY_GSTREAMER_ALL=1
+   Set to 1 to force deployment of GStreamer. By default
+	 several gstreamer plugins are removed, set DEPLOY_GSTREAMER_ALL=1
+   if you can to deploy ALL Gstreamer plugins. (Very bloated).
+
+------------------------
+  Security
+------------------------                      
+ export EPLOY_P11KIT=1
+   Set to 1 to force deployment of p11-kit.

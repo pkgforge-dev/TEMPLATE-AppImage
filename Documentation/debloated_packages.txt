@@ -1,0 +1,68 @@
+This command is ran in the get-dependencies.sh script.
+It replaces some default Archlinux packages with smaller versions intended for AppImages.
+More info at https://github.com/pkgforge-dev/archlinux-pkgs-debloated
+
+------------------------
+Example Code
+------------------------
+get-debloated-pkgs --add-common --prefer-nano
+  
+------------------------
+GENERAL COMMANDS
+------------------------
+--add-common
+  Install a curated set of common packages, implies --add-mesa
+
+--prefer-nano
+  Prefer 'nano' variants of packages instead of 'mini'
+
+-------- ----------------  
+Speclized Commands
+-------------------------
+--ffmpeg-mini 
+  which removes 20 MiB libx265.so dependency, also removes AV1 enconding support (decoding still works).
+  
+--gdk-pixbuf2-mini, --librsvg-mini 
+  These remove the glycin dependency, ~20 MiB of bloat. (glycin is also super buggy and depends on bwrap which is problematic for running appimages in very old kernels)
+
+--gtk3-mini
+  ??
+  
+--gtk4-mini
+  ??
+  
+--icu-mini 
+  Much smaller version of libicudata.so that is less than 3 MIB in size (10x reduction in size).
+
+--intel-media-driver-mini
+  ?
+  
+--kiconthemes-mini
+  ?
+  
+--llvm-libs-mini 
+  smaller version of libLLVM.so which is a 150+ MiB library, this version is reduced down to 99 MiB.
+
+--llvm-libs-nano
+  similar to mini, but with the llvm targets limited (x86_64 or aarch64) + AMDGPU, this reduces the size of the library to less than 70 MiB. Note this will cause issues if application depends on more llvm targets like compilers.
+
+--mangohud-mini
+  ?
+
+--mesa-mini and vulkan-{radeon,intel,etc}-mini 
+  remove linking to libLLVM.so, making any hardware accelerated app tiny as result.
+
+--mesa-nano and vulkan-{radeon,intel,etc}-nano 
+  similar to mesa-mini, built with -Os which makes it ~30% smaller. Note -Os can have a performance and even stability issue so do not use this package in apps like emulators where this is critical.
+
+--mesa-zink-mini
+  ?
+
+--opus-mini 
+  I have no idea why Archlinux makes this lib 5 MiB when both ubuntu and alpine make it <500 KiB
+
+--qt6-base-mini and libxml2-mini 
+  remove 30 MiB libicudata lib dependency.
+
+--x265-mini
+  ?

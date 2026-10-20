@@ -1,0 +1,48 @@
+Examples for compiling software in the get-dependencies.sh script.
+
+----------------
+Compiling using Meson 
+----------------
+
+echo "Installing from source..."
+echo "---------------------------------------------------------------"
+git clone https://gitlab.com/guillermop/master-key.git source && (
+  cd ./source
+  #Setiing Application Version for sharun.
+  TAG=$(git tag --sort=-v:refname | grep -vi 'rc\|alpha' | head -1)
+  git checkout "$TAG"
+  echo "$TAG" > ~/version
+  # Building
+  meson setup build --prefix=/usr
+  meson compile -C build
+  meson install -C build
+)
+
+-----------------------------------------
+Downloading swift compiler then compiling 
+-----------------------------------------
+
+SWIFT_VERSION="6.2"
+if [ "$ARCH" = "aarch64" ]; then
+    URL="https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2204-aarch64/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu22.04-aarch64.tar.gz"
+else
+    URL="https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2204/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu22.04.tar.gz"
+fi
+if [ ! -d "/opt/swift" ]; then
+    curl -L "$URL" -o swift.tar.gz
+    sudo mkdir -p /opt/swift
+    sudo tar -xzf swift.tar.gz -C /opt/swift --strip-components=1
+fi
+export PATH="/opt/swift/usr/bin:$PATH"
+
+echo "Installing swiftynotes from source packages..."
+echo "---------------------------------------------------------------"
+git clone https://github.com/makoni/swifty-notes-gtk.git source
+cd source
+mkdir -p Sources/CSpelling/include
+cp /usr/include/libspelling-1/libspelling.h Sources/CSpelling/include/
+export SWIFT_FLAGS="-Xcc -I$(pwd)/Sources/CSpelling/include"
+chmod +x packaging/release/assemble-install-root.sh
+./packaging/release/assemble-install-root.sh --prefix /usr --dest build-root
+sudo cp -rv build-root/usr/* /usr/
+cd ..
